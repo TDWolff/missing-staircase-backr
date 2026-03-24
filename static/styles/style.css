@@ -1,0 +1,325 @@
+body {
+  background-color: #f8f9fa;
+  color: #343a40;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.rounded-box {
+  background-color: #bddfff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #343a40;
+  text-align: center;
+  height: 370px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #6a6a6a;
+  padding-top: 20px;
+}
+
+a {
+  color: #343a40;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #bddfff;
+}
+
+
+/* Modern Navbar Styles */
+.navbar {
+  background: linear-gradient(90deg, #0055aa 0%, #5fb1ff 100%);
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 18px 18px;
+  margin-bottom: 0.7rem;
+  position: relative;
+}
+.navbar-logo {
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.navbar-logo:hover {
+  color: #e0f0ff;
+}
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar-link {
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: none;
+  outline: none;
+  position: relative;
+}
+.navbar-link.active, .navbar-link:hover {
+  background: #e0f0ff;
+  color: #0055aa;
+  box-shadow: 0 2px 8px rgba(0,85,170,0.08);
+}
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+  }
+  .navbar-links {
+    gap: 0.7rem;
+  }
+  .navbar-logo {
+    font-size: 1.1rem;
+  }
+}
+
+/* Hero Sections */
+.hero,
+.hero-about,
+.projects-hero {
+  background: linear-gradient(to right, #e0f0ff, #d0e7ff);
+  padding: 3rem 2rem 3rem 2rem;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+  margin-top: 0.5rem;
+}
+
+.hero h1,
+.hero-about h1,
+.projects-hero h1 {
+    color: #004080;
+    font-weight: 700;
+}
+
+.hero p,
+.hero-about p,
+.projects-hero p {
+    color: #1a3d7c;
+    font-size: 1.2rem;
+}
+
+/* Project Cards */
+.project-card {
+    border: 1px solid #d6eaff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: #f8fbff;
+    transition: all 0.2s ease-in-out;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(210, 230, 255, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.project-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 64, 128, 0.1);
+    transform: translateY(-3px);
+}
+
+.project-card h5 {
+    color: #0055aa;
+    font-weight: 600;
+}
+
+.project-card p {
+    color: #1a3d7c;
+}
+
+.project-card a,
+a.project-link {
+    color: #004080;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project-card a:hover,
+a.project-link:hover {
+    text-decoration: underline;
+    color: #0055aa;
+}
+
+/* Resume Page */
+.resume-container {
+    max-width: 900px;
+    margin: 3rem auto 5rem;
+    padding: 0 1rem;
+}
+
+.resume-section {
+    background-color: #f8fbff;
+    border: 1px solid #d6eaff;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    /* Modern blue/white theme, rounded corners, responsive */
+    :root {
+      --primary: #0055aa;
+      --primary-light: #5fb1ff;
+      --background: #f8fbff;
+      --card-bg: #f8fbff;
+      --card-border: #d6eaff;
+      --text: #1a3d7c;
+      --accent: #88bfff;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background: linear-gradient(to bottom, var(--primary-light), #d1e8ff);
+      padding: 12px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 12px 12px;
+      position: relative;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .navbar-link {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 999px;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .navbar-link:hover,
+    .navbar-link.active {
+      background: #e6f2ff;
+      color: #002f5c;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #e0f0ff, #d0e7ff);
+      padding: 4rem 2rem 2rem 2rem;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+    .hero h1 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(210,230,255,0.15);
+      padding: 2rem 1.5rem;
+      width: 320px;
+      max-width: 95vw;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-align: left;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0,64,128,0.10);
+      transform: translateY(-3px);
+    }
+    .card h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+    .card p {
+      color: var(--text);
+    }
+    .card a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .card a:hover {
+      color: var(--accent);
+    }
+
+    .footer {
+      background: #e6f2ff;
+      color: #0055aa;
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      border-radius: 12px 12px 0 0;
+      margin-top: 4rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .hero { padding: 2rem 0.5rem; }
+      .card-grid { gap: 1rem; }
+      .card { padding: 1.2rem 0.7rem; }
+      .navbar { flex-direction: column; gap: 0.5rem; }
+    }
+    margin-bottom: 1rem;
+  }
+
+    .tutorial-section p {
+        color: #1a3d7c;
+        line-height: 1.6;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tutorial-section a {
+        color: #004080;
+        text-decoration: underline;
+    }
+
+    .tutorial-section a:hover {
+        color: #003366;
+        text-decoration: none;
+    }

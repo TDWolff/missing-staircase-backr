@@ -1,0 +1,42 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}404 Not Found | My New Site{% endblock %}
+
+{% block style %}
+.notfound-container {
+	text-align: center;
+	padding: 60px 20px 100px 20px;
+}
+.notfound-title {
+	font-size: 5rem;
+	font-weight: bold;
+	color: #e74c3c;
+	margin-bottom: 0.5em;
+}
+.notfound-message {
+	font-size: 1.5rem;
+	color: #333;
+	margin-bottom: 2em;
+}
+.notfound-home {
+	display: inline-block;
+	padding: 0.75em 2em;
+	background: #3498db;
+	color: #fff;
+	border-radius: 4px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: background 0.2s;
+}
+.notfound-home:hover {
+	background: #217dbb;
+}
+{% endblock %}
+
+{% block body %}
+<div class="notfound-container">
+	<div class="notfound-title">404</div>
+	<div class="notfound-message">Sorry, the page you are looking for does not exist.</div>
+	<a href="/" class="notfound-home">Go Home</a>
+</div>
+{% endblock %}
