@@ -1,0 +1,8 @@
+Flask
+Flask-Limiter
+Flask-Compress
+Flask-Caching
+python-dotenv
+sqlcipher3
+redis
+werkzeug

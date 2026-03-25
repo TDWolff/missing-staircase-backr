@@ -3,8 +3,7 @@ import subprocess
 from flask import render_template, request, make_response
 from flask.cli import AppGroup
 from flask import Flask, jsonify, send_from_directory
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+ 
 from flask_compress import Compress
 import os
 import dotenv
@@ -13,11 +12,15 @@ import redis
 
 dotenv.load_dotenv()
 
-
 from datetime import datetime
+
 app = Flask(__name__)
 
-# Inject current year into all templates
+
+
+# Register login blueprint
+from login import login_bp
+app.register_blueprint(login_bp)
 
 # Inject current year and current endpoint into all templates
 from flask import request
@@ -28,9 +31,14 @@ def inject_globals():
         'current_endpoint': request.endpoint
     }
 
+
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/login-user', methods=['GET'])
+def login_page():
+    return render_template('login.html')
 
 # 404 error handler
 @app.errorhandler(404)
