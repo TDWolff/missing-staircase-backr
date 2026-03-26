@@ -78,7 +78,7 @@ def is_strong_password(password):
 
 @login_bp.route('/login', methods=['POST'])
 def login():
-    data = request.form
+    data = request.get_json(silent=True) or {}
     username = data.get('username')
     password = data.get('password')
     if not username or not password:
@@ -105,8 +105,17 @@ def login():
             session_token,
             httponly=True,
             secure=True,
-            samesite='Strict',
-            max_age=60*60*24*7  # 1 week
+            samesite='None',
+            max_age=60*60*24*7
+        )
+        # Set a non-HttpOnly cookie for frontend JS to read login state
+        resp.set_cookie(
+            'loggedIn',
+            'true',
+            httponly=False,
+            secure=True,
+            samesite='None',
+            max_age=60*60*24*7
         )
         return resp
     conn.close()
@@ -123,7 +132,9 @@ def logout():
         conn.commit()
         conn.close()
     resp = make_response('', 204)
-    resp.set_cookie('session', '', expires=0, httponly=True, secure=True, samesite='Strict')
+    resp.set_cookie('session', '', expires=0, httponly=True, secure=True, samesite='None')
+    # Set loggedIn to false and expire it
+    resp.set_cookie('loggedIn', 'false', expires=0, httponly=False, secure=True, samesite='None')
     return resp
 # Helper to get current user from session cookie
 def get_current_user():
@@ -143,7 +154,7 @@ def get_current_user():
 
 @login_bp.route('/signup', methods=['POST'])
 def signup():
-    data = request.form
+    data = request.get_json(silent=True) or {}
     username = data.get('username')
     password = data.get('password')
     confirm_password = data.get('confirm_password')

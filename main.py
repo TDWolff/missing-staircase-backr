@@ -22,8 +22,19 @@ app = Flask(__name__)
 from login import login_bp
 app.register_blueprint(login_bp)
 
+
+from flask_cors import CORS
+
+# Allow CORS for local frontend (http://127.0.0.1:8086)
+CORS(
+    app,
+    origins=["http://127.0.0.1:8086"],
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    expose_headers=["Content-Type", "Authorization"],
+)
+
 # Inject current year and current endpoint into all templates
-from flask import request
 @app.context_processor
 def inject_globals():
     return {
