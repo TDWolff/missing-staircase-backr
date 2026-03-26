@@ -16,11 +16,13 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-
-
 # Register login blueprint
 from login import login_bp
 app.register_blueprint(login_bp)
+
+# Register profile blueprint
+from profile import profile_bp
+app.register_blueprint(profile_bp)
 
 
 from flask_cors import CORS
