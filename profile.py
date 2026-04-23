@@ -62,10 +62,10 @@ def profile():
         return jsonify({'error': 'Unauthorized'}), 401
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute('SELECT username FROM usr_data WHERE user_id=?', (user_id,))
+    c.execute('SELECT username, role FROM usr_data WHERE user_id=?', (user_id,))
     row = c.fetchone()
     conn.close()
     if not row:
         return jsonify({'error': 'User not found'}), 404
-    username = row[0]
-    return jsonify({'username': username}), 200
+    username, role = row
+    return jsonify({'username': username, 'role': role}), 200

@@ -31,7 +31,8 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
         password_hash TEXT NOT NULL,
-        user_id TEXT UNIQUE NOT NULL
+        user_id TEXT UNIQUE NOT NULL,
+        role TEXT NOT NULL DEFAULT 'User'
     )''')
     c.execute('''CREATE TABLE IF NOT EXISTS sessions (
         session_token TEXT PRIMARY KEY,
@@ -82,7 +83,7 @@ def login():
     username = data.get('username')
     password = data.get('password')
     if not username or not password:
-        return jsonify({'error': 'Invalid credentials'}), 401
+        return jsonify({'error': 'Username Or Password Incorrect'}), 401
     # Check credentials
     conn = get_db_connection()
     c = conn.cursor()
@@ -120,7 +121,7 @@ def login():
         return resp
     conn.close()
     # Always return generic error
-    return jsonify({'error': 'Invalid credentials'}), 401
+    return jsonify({'error': 'Username Or Password Incorrect'}), 401
 # Logout endpoint to clear the session cookie and remove session from DB
 @login_bp.route('/logout', methods=['POST'])
 def logout():
