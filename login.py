@@ -106,6 +106,8 @@ def login():
         resp.set_cookie(
             'session',
             session_token,
+            domain='.torinwolff.com',
+            path='/',
             httponly=True,
             secure=True,
             samesite='None',
@@ -115,6 +117,8 @@ def login():
         resp.set_cookie(
             'loggedIn',
             'true',
+            domain='.torinwolff.com',
+            path='/',
             httponly=False,
             secure=True,
             samesite='None',
@@ -137,9 +141,9 @@ def logout():
         conn.commit()
         conn.close()
     resp = make_response('', 204)
-    resp.set_cookie('session', '', expires=0, httponly=True, secure=True, samesite='None')
+    resp.set_cookie('session', '', domain='.torinwolff.com', path='/', expires=0, httponly=True, secure=True, samesite='None')
     # Set loggedIn to false and expire it
-    resp.set_cookie('loggedIn', 'false', expires=0, httponly=False, secure=True, samesite='None')
+    resp.set_cookie('loggedIn', 'false', domain='.torinwolff.com', path='/', expires=0, httponly=False, secure=True, samesite='None')
     return resp
 # Helper to get current user from session cookie
 def get_current_user():
@@ -185,7 +189,38 @@ def signup():
         c.execute('INSERT INTO usr_data (username, password_hash, user_id) VALUES (?, ?, ?)', (username, password_hash, user_id))
         conn.commit()
         conn.close()
-        return '', 202  # Accepted
+        # Generate session token for new user
+        session_token = secrets.token_urlsafe(64)
+        import time
+        expires_at = int(time.time()) + 60*60*24*7
+        conn = get_db_connection()
+        c = conn.cursor()
+        c.execute('INSERT INTO sessions (session_token, user_id, expires_at) VALUES (?, ?, ?)', (session_token, user_id, expires_at))
+        conn.commit()
+        conn.close()
+        # Set cookies for new user
+        resp = make_response('', 202)
+        resp.set_cookie(
+            'session',
+            session_token,
+            domain='.torinwolff.com',
+            path='/',
+            httponly=True,
+            secure=True,
+            samesite='None',
+            max_age=60*60*24*7
+        )
+        resp.set_cookie(
+            'loggedIn',
+            'true',
+            domain='.torinwolff.com',
+            path='/',
+            httponly=False,
+            secure=True,
+            samesite='None',
+            max_age=60*60*24*7
+        )
+        return resp
     except sqlite3.IntegrityError:
         # Always return generic error
         return jsonify({'error': 'Invalid signup data'}), 400

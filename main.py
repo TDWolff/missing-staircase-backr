@@ -27,13 +27,14 @@ app.register_blueprint(profile_bp)
 
 from flask_cors import CORS
 
-# Allow CORS for local frontend (http://127.0.0.1:8086)
+# Allow CORS for frontend
 CORS(
     app,
     origins=['https://torinwolff.com'],
     supports_credentials=True,
     allow_headers=["Content-Type", "Authorization"],
     expose_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "OPTIONS", "DELETE", "PUT"],
 )
 
 # Inject current year and current endpoint into all templates
