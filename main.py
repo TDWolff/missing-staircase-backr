@@ -30,7 +30,7 @@ from flask_cors import CORS
 # Allow CORS for local frontend (http://127.0.0.1:8086)
 CORS(
     app,
-    origins=['http://127.0.0.1:8086', 'https://torinwolff.com'],
+    origins=['https://torinwolff.com'],
     supports_credentials=True,
     allow_headers=["Content-Type", "Authorization"],
     expose_headers=["Content-Type", "Authorization"],
