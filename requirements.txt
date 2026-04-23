@@ -2,6 +2,7 @@ Flask
 Flask-Limiter
 Flask-Compress
 Flask-Caching
+flask-cors
 python-dotenv
 sqlcipher3
 redis
