@@ -7,8 +7,10 @@ from login import get_current_user, get_db_connection
 profile_bp = Blueprint('profile', __name__)
 
 # Change password endpoint
-@profile_bp.route('/change-password', methods=['POST'])
+@profile_bp.route('/change-password', methods=['POST', 'OPTIONS'])
 def change_password():
+    if request.method == 'OPTIONS':
+        return '', 204
     user_id = get_current_user()
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401
@@ -55,8 +57,10 @@ def change_password():
     return jsonify({'message': 'Password changed successfully'}), 200
 
 
-@profile_bp.route('/profile', methods=['GET'])
+@profile_bp.route('/profile', methods=['GET', 'OPTIONS'])
 def profile():
+    if request.method == 'OPTIONS':
+        return '', 204
     user_id = get_current_user()
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401

@@ -77,8 +77,10 @@ def is_strong_password(password):
         return False
     return True
 
-@login_bp.route('/login', methods=['POST'])
+@login_bp.route('/login', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        return '', 204
     data = request.get_json(silent=True) or {}
     username = data.get('username')
     password = data.get('password')
@@ -123,8 +125,10 @@ def login():
     # Always return generic error
     return jsonify({'error': 'Username Or Password Incorrect'}), 401
 # Logout endpoint to clear the session cookie and remove session from DB
-@login_bp.route('/logout', methods=['POST'])
+@login_bp.route('/logout', methods=['POST', 'OPTIONS'])
 def logout():
+    if request.method == 'OPTIONS':
+        return '', 204
     session_token = request.cookies.get('session')
     if session_token:
         conn = get_db_connection()
@@ -153,8 +157,10 @@ def get_current_user():
         return row[0]  # user_id
     return None
 
-@login_bp.route('/signup', methods=['POST'])
+@login_bp.route('/signup', methods=['POST', 'OPTIONS'])
 def signup():
+    if request.method == 'OPTIONS':
+        return '', 204
     data = request.get_json(silent=True) or {}
     username = data.get('username')
     password = data.get('password')
