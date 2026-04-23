@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8087:8087"
+    network_mode: "host"
+    volumes:
+      - persistent_volume:/app/volumes
+    restart: unless-stopped
+    env_file:
+      - .env
+
+volumes:
+  persistent_volume:
+    driver: local
